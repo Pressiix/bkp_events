@@ -1,0 +1,9 @@
+RewriteEngine On
+
+RewriteCond %{http_host} ^posttoday.com [NC]
+RewriteRule ^(.*)$ https://www.bangkokpost.com/events/bangkokpostinterforum2020/$1 [L,R=301]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+# RewriteRule ^ index.php [QSA,L]
+RewriteRule ^ /events/bangkokpostinterforum2020/index.php [QSA,L]

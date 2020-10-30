@@ -22,11 +22,13 @@
 	function _check_duplicate_reg($email,$phone)
 	{ 
 		$ret = false;
-		$this->load->database();
+		$CI = &get_instance();
+		$CI->load->database();
+		$config = $CI->config->item('event');
 
-		$this->db->select('name');  //name field = json
-		$this->db->where("event_id = {$this->db->escape($this->event['event_id'])}");
-		$result = $this->db->get('register')->result();
+		$CI->db->select('name');  //name field = json
+		$CI->db->where("event_id = {$CI->db->escape($config['event_id'])}");
+		$result = $CI->db->get('register')->result();
 		$result = json_decode(json_encode($result), True);
 		foreach($result as $val)
 		{
@@ -60,14 +62,20 @@
 	 */
 	function _check_unsubscription($email)
 	{ 
+		$CI = &get_instance();
 		$ret = false;
-		$this->load->database();
+		$CI->load->database();
 
-		$this->db->select('*');  //name field = json
-		$this->db->where("
+		$CI->db->select('*');  //name field = json
+		$CI->db->where("
 			email = {$this->db->escape($email)}
-			OR change_email = {$this->db->escape($email)}
+			OR change_email = {$CI->db->escape($email)}
 		");
-		 $count_rows = $this->db->get('unsubscription')->num_rows();
+		 $count_rows = $CI->db->get('unsubscription')->num_rows();
 		 return $ret = ($count_rows !== 0 ? true : false);
+	}
+
+	function test()
+	{
+		return "BBB";
 	}

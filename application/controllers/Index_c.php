@@ -18,6 +18,12 @@ class Index_c extends CI_Controller
 
 	}
 
+	public function test_ee()
+	{
+		$this->load->helper('register_validate_helper');
+		echo test();
+	}
+
 	public function index()
 	{
 		if($this->event['is_closed'])
