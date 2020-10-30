@@ -151,8 +151,19 @@ class Index_c extends CI_Controller
 
 	public function thankyou()
 	{
-		echo "THANK YOU";
-		// $this->load->view('thankyou');
+		if($this->event['is_closed'])
+		{
+			//// Some Action
+		}	
+
+		$data['check_quota'] = RegisterHelper::get_quota();
+		if ($data['check_quota']) {
+			echo '<!--' . $data['check_quota'] . '-->';
+		}
+
+		$data['response'] = "Thank you for your registration!";
+	
+		$this->load->view('index', $data); 
 	}
 
 }

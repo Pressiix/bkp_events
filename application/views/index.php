@@ -30,7 +30,9 @@
 </head>
 
 <body>
-
+  <?php if($response){ ?>
+    <script>alert('<?= $response ?>');</script>
+  <?php } ?>
 <div class="box-social">
   <ul>
     <li><a href="javascript:;"><img src="assets/images//icon/icn-fb.svg" class="img-fluid" alt=""></a></li>
