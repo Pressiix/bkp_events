@@ -72,27 +72,49 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 $active_group = 'default';
 $query_builder = TRUE;
+if(strpos($_SERVER["HTTP_HOST"],'localhost') !== false || strpos($_SERVER["HTTP_HOST"],'127.0.0.1') !== false){
+	$db['default'] = array(
+		'dsn'	=> '',
+		'hostname' => '127.0.0.1',
+		'username' => 'root',
+		'password' => '',
+		'database' => 'postdigital_ptd',
+		'dbdriver' => 'mysqli',
+		'dbprefix' => 'events_',
+		'pconnect' => FALSE,
+		'db_debug' => (ENVIRONMENT !== 'production'),
+		'cache_on' => FALSE,
+		'cachedir' => '',
+		'char_set' => 'utf8',
+		'dbcollat' => 'utf8_general_ci',
+		'swap_pre' => '',
+		'encrypt' => FALSE,
+		'compress' => FALSE,
+		'stricton' => FALSE,
+		'failover' => array(),
+		'save_queries' => FALSE
+	);
+}else{
+	$db['default'] = array(
+		'dsn'	=> '',
+		'hostname' => '127.0.0.1',	
+		'username' => 'postdigital_ptd',
+		'password' => 'Thahxay8',
+		'database' => 'postdigital_ptd',
+		'dbdriver' => 'mysqli',
+		'dbprefix' => 'events_',
+		'pconnect' => FALSE,
+		'db_debug' => (ENVIRONMENT !== 'production'),
+		'cache_on' => FALSE,
+		'cachedir' => '',
+		'char_set' => 'utf8',
+		'dbcollat' => 'utf8_general_ci',
+		'swap_pre' => '',
+		'encrypt' => FALSE,
+		'compress' => FALSE,
+		'stricton' => FALSE,
+		'failover' => array(),
+		'save_queries' => FALSE
+	);
+}
 
-$db['default'] = array(
-	'dsn'	=> '',
-	'hostname' => '127.0.0.1',	
-	// 'username' => 'postdigital_ptd',
-	// 'password' => 'Thahxay8',
-	'username' => 'root',
-	'password' => '',
-	'database' => 'postdigital_ptd',
-	'dbdriver' => 'mysqli',
-	'dbprefix' => 'events_',
-	'pconnect' => FALSE,
-	'db_debug' => (ENVIRONMENT !== 'production'),
-	'cache_on' => FALSE,
-	'cachedir' => '',
-	'char_set' => 'utf8',
-	'dbcollat' => 'utf8_general_ci',
-	'swap_pre' => '',
-	'encrypt' => FALSE,
-	'compress' => FALSE,
-	'stricton' => FALSE,
-	'failover' => array(),
-	'save_queries' => FALSE
-);
