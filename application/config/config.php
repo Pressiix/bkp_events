@@ -583,3 +583,28 @@ $config['rewrite_short_tags'] = FALSE;
 */
 $config['proxy_ips'] = '';
 
+
+/** ---------------------------------------------------------------------
+ * Implement NameSpace
+ * 
+ * @author Watcharaphon Piamphuetna <watcharaphonp@bangkokpost.co.th>
+ * 
+ * ---------------------------------------------------------------------*/
+spl_autoload_extensions('.php'); // Only Autoload PHP Files
+
+spl_autoload_register(function($classname) {
+    if (strpos($classname,'\\') !== false) {
+        // Namespaced Classes
+        $classfile = strtolower(str_replace('/', '\\', $classname));
+
+        if ($classname[0] !== '/') {
+            $classfile = APPPATH. $classfile . '.php';
+        }               
+        require($classfile);
+    } elseif (strpos($classname, 'interface') !== false) {
+        // Interfaces
+        strtolower($classname);
+        require('application/interfaces/' . $classname . '.php');
+    }
+});
+

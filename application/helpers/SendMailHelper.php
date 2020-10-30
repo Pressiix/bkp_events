@@ -8,8 +8,10 @@
  *	@copyright copyright (c) 1996 - 2020 Bangkok Post Public Company Limited.
  */
 
-	if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+namespace helpers;
 
+Class SendMailHelper
+{
 	/**
 	 * 
 	 * @param $mailto
@@ -59,4 +61,7 @@
 			$CI->phpmailer->clearAllRecipients(); 
 			return true;
 		}
-	}	
+	}
+}
+
+		

@@ -80,7 +80,7 @@
           </ul>
         </div>
         <div class="div-btn animated fadeInUp slower">
-          <a href="javascript:;" class="btn-forum" data-hover="Register">Register</a>
+          <a href="#register-form" class="btn-forum" data-hover="Register">Register</a>
           <a href="javascript:;" class="btn-forum" data-hover="Payment Verification">Payment Verification</a>
         </div>
       </div>
@@ -161,23 +161,26 @@
 </section>
 
 
-<section class="section-page bg-F0F0F0">
+<section id="register-form" class="section-page bg-F0F0F0">
   <div class="container">
     <div class="text-title"><h3 data-aos="fade-up">REGISTER FOR FREE</h3></div>
     <div class="form--forum">
-      <form>
-        <input class="form-control" type="text" placeholder="First Name" data-aos="fade-up">
-        <input class="form-control" type="text" placeholder="Last name" data-aos="fade-up">
-        <input class="form-control" type="text" placeholder="E-mail Address" data-aos="fade-up">
-        <input class="form-control" type="text" placeholder="Tel. Number" data-aos="fade-up">
-        <select class="form-control custom-select" data-aos="fade-up">
-          <option>Your Lastest High School/University"</option>
-          <option>2</option>
-          <option>3</option>
-          <option>4</option>
-          <option>5</option>
+      <form action="<?= base_url() ?>register" method="POST">
+
+        <input type="hidden" name="register_person" value="1" />	
+
+        <input name="name" class="form-control" type="text" placeholder="First Name" data-aos="fade-up">
+        <input name="lastname" class="form-control" type="text" placeholder="Last name" data-aos="fade-up">
+        <input name="email" class="form-control" type="text" placeholder="E-mail Address" data-aos="fade-up">
+        <input name="phone" class="form-control" type="text" placeholder="Tel. Number" data-aos="fade-up">
+        <select name="option" class="form-control custom-select" data-aos="fade-up">
+          <option >Your Lastest High School/University"</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
         </select>
-        <div class="div-btn" data-aos="fade-up"><button class="btn-forum" data-hover="Register Now!">Register Now!</button></div>
+        <div class="div-btn" data-aos="fade-up"><button type="submit" class="btn-forum" data-hover="Register Now!">Register Now!</button></div>
       </form>
     </div>
   </div>
@@ -240,7 +243,10 @@
       </div>
       <div class="col-12 col-md-3">
         <div class="div-footer--header" data-aos="fade-up">SCAN QR CODE HERE</div>
-        <div class="div-footer--qrcode" data-aos="fade-up"><img src="assets/images/img-qrcode.jpg" class="img-fluid" alt=""></div>
+        <div class="div-footer--qrcode" data-aos="fade-up">
+          <!-- <img src="assets/images/img-qrcode.jpg" class="img-fluid" alt=""> -->
+          <img src='https://chart.googleapis.com/chart?cht=qr&chl=<?= base_url() ?>&chs=245x245&chld=L|0' class="img-fluid" alt="">
+        </div>
       </div>
     </div>
   </div>
