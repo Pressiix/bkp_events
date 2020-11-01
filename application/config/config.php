@@ -61,7 +61,7 @@ $config['event']['url_image_header'] = $config['base_url'] . '/resources/img/ral
 $config['event']['mail_event_label'] = $config['event']['title'].' : '.$config['event']['description'];
 
 // CONTACT
-$config['event']['contact_phone'] = 'xxx-xxx-xxxx';
+$config['event']['contact_phone'] = '222-222-2222';
 $config['event']['contact_email'] = 'watcharaphonp@bangkokpost.co.th';
 
 /*

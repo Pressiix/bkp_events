@@ -1,3 +1,4 @@
+<?php $_URL = base_url(); ?>
 <!doctype html>
 <html>
 <head>
@@ -15,6 +16,8 @@
 <title>Event Forum</title>
 	
   <script type="text/javascript" src="assets/js/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
 
   <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.css">
   <script src="assets/bootstrap/js/bootstrap.min.js"></script>
@@ -30,7 +33,7 @@
 </head>
 
 <body>
-  <?php if($response){ ?>
+  <?php if(isset($response)){ ?>
     <script>alert('<?= $response ?>');</script>
   <?php } ?>
 <div class="box-social">
@@ -167,21 +170,40 @@
   <div class="container">
     <div class="text-title"><h3 data-aos="fade-up">REGISTER FOR FREE</h3></div>
     <div class="form--forum">
-      <form action="<?= base_url() ?>register" method="POST">
+      <form action="<?= base_url() ?>register" method="POST" id="registerForm"> 
 
-        <input type="hidden" name="register_person" value="1" />	
+      <div>
+        <input type="hidden" name="register_person" value="1" />
+      </div>
+        	
 
-        <input name="name" class="form-control" type="text" placeholder="First Name" data-aos="fade-up">
-        <input name="lastname" class="form-control" type="text" placeholder="Last name" data-aos="fade-up">
-        <input name="email" class="form-control" type="text" placeholder="E-mail Address" data-aos="fade-up">
-        <input name="phone" class="form-control" type="text" placeholder="Tel. Number" data-aos="fade-up">
-        <select name="option" class="form-control custom-select" data-aos="fade-up">
-          <option >Your Lastest High School/University"</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-        </select>
+        <div>
+          <input name="name" id="name" class="form-control" type="text" placeholder="First Name" data-aos="fade-up">
+          <span class="form-message"></span>
+        </div>
+        <div>
+          <input name="lastname" id="lastname" class="form-control" type="text" placeholder="Last name" data-aos="fade-up">
+          <span class="form-message"></span>
+        </div>
+        <div>
+          <input name="email" id="email" class="form-control" type="text" placeholder="E-mail Address" data-aos="fade-up">
+          <span class="form-message"></span>
+        </div>
+        <div>
+          <input name="phone" id="phone" class="form-control" type="text" placeholder="Tel. Number" data-aos="fade-up">
+          <span class="form-message"></span>
+        </div>
+        <div>
+          <select name="option" id="option" class="form-control custom-select" data-aos="fade-up">
+            <option >Your Lastest High School/University"</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+          <span class="form-message"></span>
+        </div>
+        
         <div class="div-btn" data-aos="fade-up"><button type="submit" class="btn-forum" data-hover="Register Now!">Register Now!</button></div>
       </form>
     </div>
@@ -238,8 +260,8 @@
       <div class="col-12 col-md-9" data-aos="fade-up">
         <div class="div-footer">
           <h4>For more information contact</h4>
-          <p>Tel. xxx-xxx-xxxx</p>
-          <p><a href="javascript:;">www.bangkokpost.com/event/5g-the-game-changer</a></p>
+          <p>Tel. <?= $this->event['contact_phone'] ?></p>
+          <p><a href="<?= $_URL ?>"><?= str_replace(strpos($_URL,'https') !== false ? 'https://': 'http://','',$_URL) ?></a></p>
           <p>The seminar will be conducted in Thai with simultaneous translation in English</p>
         </div>
       </div>
@@ -247,13 +269,82 @@
         <div class="div-footer--header" data-aos="fade-up">SCAN QR CODE HERE</div>
         <div class="div-footer--qrcode" data-aos="fade-up">
           <!-- <img src="assets/images/img-qrcode.jpg" class="img-fluid" alt=""> -->
-          <img src='https://chart.googleapis.com/chart?cht=qr&chl=<?= base_url() ?>&chs=245x245&chld=L|0' class="img-fluid" alt="">
+          <img src='https://chart.googleapis.com/chart?cht=qr&chl=<?= $_URL.(!empty($_SERVER['QUERY_STRING']) ? '?'.$_SERVER['QUERY_STRING'] : '') ?>&chs=245x245&chld=L|0' class="img-fluid" alt="">
         </div>
       </div>
     </div>
   </div>
 </section>
 
+<script>
+  $.validator.addMethod('customphone', function (value, element) {
+			return this.optional(element) || /^\d{9,10}$/.test(value);
+		}, "Please enter a valid phone number");
+		$.validator.addClassRules('customphone', {
+			customphone: true
+		});
+
+  $(document).ready(function() {
+    $('input').keyup(function()
+    {
+      if($(this).val())
+      {
+        $(this).css("border-color", "");
+        $(this).css("background-color", "#e8f0fe");
+        $(this).css("color", "black");
+        if(!$(this).next().find( 'label[class*="error"]' ))
+        {
+          $(this).parent().css('padding-bottom','25px');
+        }else{
+          $(this).parent().css('padding-bottom','0px');
+        }
+      }else{
+        $(this).parent().css('padding-bottom','25px');
+      }
+      
+    })
+
+    $("#registerForm").validate({
+          errorPlacement: function(error, element) {
+              error.appendTo(element.next());
+              element[0].parentNode.style.padding = "0 0 25px"; //parent div tag
+              element[0].style.borderColor  = 'red'; //input tag
+              element[0].style.backgroundColor  = '';//input tag
+              element.next()[0].style.color = 'red';  //error message
+              element.next()[0].style.fontWeight = 'bold'; //error message
+          },
+          rules: {
+              name: "required",
+              lastname: "required",
+              company: "required", 
+              position: "required",					
+              email: {
+                required: true,
+                email: true,
+              },
+              
+              phone: {
+                required: true,
+                customphone: true,
+              },
+          },
+          messages: {
+              name: "*Information required/โปรดกรอกข้อมูลให้ครบถ้วน",
+              lastname: "*Information required/โปรดกรอกข้อมูลให้ครบถ้วน",
+              company: "*Information required/โปรดกรอกข้อมูลให้ครบถ้วน",
+              position: "*Information required/โปรดกรอกข้อมูลให้ครบถ้วน",
+              email: {
+                required: "*Information required/โปรดกรอกข้อมูลให้555ครบถ้วน",
+                email:"*Invalid data/ข้อมูลไม่ถูกต้อง",
+              },
+              phone: { 
+                required:"*Information required/โปรดกรอกข้อมูลให้ครบถ้วน",
+                customphone:"*Invalid data/ข้อมูลไม่ถูกต้อง",
+              }					
+          }
+    });
+});
+</script>
 	
 </body>
 </html>
