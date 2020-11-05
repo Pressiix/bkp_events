@@ -12,7 +12,7 @@
     <div class="row">
       <div class="col-12 col-md-12 col-lg-6">
         <div class="title-top-detail">
-        <div class="img-title animated fadeInUp slower"><img src="<?= $_STATIC_URL ?>assets/images/ORFI0M0.jpg" class="img-fluid"></div>
+        <div class="img-title animated fadeInUp slower"><img src="<?= $this->event['url_image_banner1'] ?>" class="img-fluid"></div>
           <div class="title-en animated fadeInUp slower">Wednesday, November 25, 2020<br>
             World Ballroom, 23rd Floor,<br>
             Centara Grand at CentralWorld<br>
@@ -37,7 +37,7 @@
           <!-- <div class="embed-responsive embed-responsive-16by9">
              <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0" allowfullscreen></iframe>
           </div> -->
-          <div><img src="<?= $_STATIC_URL ?>assets/images/1900x1080.jpg" class="img-fluid" alt=""></div>
+          <div><img src="<?= $this->event['url_image_banner2'] ?>" class="img-fluid" alt=""></div>
         </div>
         <div class="div-countdown animated fadeInUp slower">
           <ul>
@@ -48,8 +48,8 @@
           </ul>
         </div>
         <div class="div-btn animated fadeInUp slower">
-          <a href="javascript:;" class="btn-forum" data-hover="Register" onclick="GoToContent('register-form');">Register</a>
-          <a href="javascript:;" class="btn-forum" data-hover="Agenda" onclick="GoToContent('agenda-content');">Agenda</a>
+          <button class="btn-forum<?= isset($is_closed) && $is_closed ? '-disabled' : '' ?>" data-hover="Register" <?= isset($is_closed) && !$is_closed ? 'onclick="GoToContent(\'register-form\');"' : 'disabled style="cursor: no-drop;"' ?>>Register</button>
+          <button class="btn-forum" data-hover="Agenda" onclick="GoToContent('agenda-content');">Agenda</button>
         </div>
       </div>
     </div>
@@ -128,7 +128,7 @@
   </div>
 </section>
 
-
+<?php if(isset($is_closed) && !$is_closed){ ?>
 <section id="register-form" class="section-page bg-F0F0F0">
   <div class="container">
     <div class="text-title"><h3 data-aos="fade-up">REGISTER FOR FREE</h3></div>
@@ -199,7 +199,7 @@
     </div>
   </div>
 </section>
-
+<?php } ?>
 
 <section id="agenda-content" class="section-page bg-132F65">
 <div class="container">
@@ -269,7 +269,7 @@
             <li><span id="seconds2"></span>SECOND</li>
           </ul>
         </div>
-        <div class="div-btn" data-aos="fade-up"><button class="btn-forum" data-hover="Register Now!">Register Now!</button></div>
+        <div class="div-btn" data-aos="fade-up"><button class="btn-forum<?= isset($is_closed) && $is_closed ? '-disabled' : '' ?>" data-hover="Register Now!" <?= isset($is_closed) && !$is_closed ? 'onclick="GoToContent(\'register-form\');"' : 'disabled style="cursor: no-drop;"' ?>>Register Now!</button></div>
       </div>
     </div>
   </div>

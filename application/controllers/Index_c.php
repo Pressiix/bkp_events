@@ -27,6 +27,16 @@ class Index_c extends CI_Controller
 		if ($data['check_quota']) {
 			echo '<!--' . $data['check_quota'] . '-->';
 		}
+
+		//ดึงค่าวันที่และเวลาที่ตั้งไว้สำหรับปิดระบบ และปิดระบบอัตโนมัติ
+		$date = $this->event['close_date'];
+		$close_date = strtotime($date);
+		if(date("d/M/Y h:i:s") >= date('d/M/Y h:i:s', $close_date))
+		{
+			$data['is_closed'] = TRUE;
+		}else{
+			$data['is_closed'] = FALSE;
+		}
 		
 		$data['_URL'] = base_url();
 		$data['_STATIC_URL'] = $this->event['base_static'];
@@ -38,10 +48,6 @@ class Index_c extends CI_Controller
 
 	public function index()
 	{
-		if($this->event['is_closed'])
-		{
-			//// Some Action
-		}	
 		$data = $this->getPageConfig();
 		$data['_isHome'] = TRUE;
 		$this->load->view('template/header',$data); 

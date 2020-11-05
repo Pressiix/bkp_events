@@ -32,8 +32,8 @@
 	</tr>
 	<tr>
 		<td style="width: 620px; font-family: Arial;font-size: 12px; line-height: 20px; color:#666;">
-		Please show this code for your attendance of the event on November 11, 2020. <br>
-		We are honored and are looking forward to welcoming you at the event on at Convention A2 , 22nd floor, Centara Grand at CentralWorld, Bangkok.
+		Please show this code for your attendance of the event on Wednesday, November 25, 2020. <br>
+		We are honored and are looking forward to welcoming you at the event on at World Ballroom, 23rd Floor, Centara Grand at CentralWorld 13:00 PM. - 17:25 PM.
 		</td>
 	</tr>
 	<tr>
@@ -71,7 +71,7 @@
 	<tr>
 		<td style="width: 620px; font-family: Arial;font-size: 12px; line-height: 20px; color:#666;">
 			กรุณานำรหัสลงทะเบียนหรือ QR Code ข้างต้นมาแสดงเพื่อเป็นหลักฐานการเข้าร่วมงานดังกล่าว<br>
-			บริษัทมีความยินดีอย่างยิ่งที่จะได้ต้อนรับท่านในงานวันที่ 11 พฤศจิกายน 2563 เวลา 08.30 – 09.00 น. ณ ห้อง Convention A2 ชั้น 22 โรงแรมเซ็นทารา แกรนด์ แอท เซ็นทรัลเวิลด์ กรุงเทพฯ 
+			บริษัทมีความยินดีอย่างยิ่งที่จะได้ต้อนรับท่านในงานวันพุธที่ 25 พฤศจิกายน พ.ศ. 2563 ณ ห้องเวิลด์บอลรูม ชั้น 23 โรงแรมเซ็นทารา แกรนด์ แอท เซ็นทรัลเวิลด์ เวลา 13.00 – 17.25 น. 
 		</td>
 	</tr>
 	<tr>
