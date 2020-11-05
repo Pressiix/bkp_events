@@ -61,11 +61,10 @@ Class RegisterHelper
 		else if($person['email'] !== '' && $person['phone'] == '')
 		{
 			$CI->db->where("
-				banlist_email = {$CI->db->escape($person['email'])}
-				OR (banlist_name = {$CI->db->escape($person['name'])} AND banlist_lastname = {$CI->db->escape($person['lastname'])}) 
+				(banlist_name = {$CI->db->escape($person['name'])} AND banlist_lastname = {$CI->db->escape($person['lastname'])}) 
 			");
 		}
-
+		// $arr_ban_list = $CI->db->get('banlist')->result();
 		$arr_ban_list = $CI->db->get('banlist')->row_array();
 
 		if ($arr_ban_list) {

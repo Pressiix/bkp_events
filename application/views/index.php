@@ -1,80 +1,43 @@
-<?php $_URL = base_url(); ?>
-<!doctype html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <meta name="description" content="">
-  <meta name="keywords" content="">
-	
-  <!-- HTML5 Shim for IE -->
-  <!--[if IE]>
-    <script src="assets/js/html5.js"></script>
-  <![endif]-->
-	
-<title>Event Forum</title>
-	
-  <script type="text/javascript" src="assets/js/jquery.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
-
-  <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.css">
-  <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-  <link href="assets/fontawesome-5.6.3/css/all.css" rel="stylesheet">
-  <link href="assets/css/animate.min.css" rel="stylesheet">
-  	
-  <link href="assets/plugins/aos/aos.css" rel="stylesheet">
-  <script src="assets/plugins/aos/aos.js"></script>
-
-  <link href="assets/css/style.css" rel="stylesheet" type="text/css">
-  <script type="text/javascript" src="assets/js/scripts.js"></script>
-	
-</head>
-
-<body>
-  <?php if(isset($response)){ ?>
-    <script>alert('<?= $response ?>');</script>
-  <?php } ?>
 <div class="box-social">
   <ul>
-    <li><a href="javascript:;"><img src="assets/images//icon/icn-fb.svg" class="img-fluid" alt=""></a></li>
-    <li><a href="javascript:;"><img src="assets/images//icon/icn-tw.svg" class="img-fluid" alt=""></a></li>
-    <li><a href="javascript:;"><img src="assets/images//icon/icn-line.svg" class="img-fluid" alt=""></a></li>
+    <li><a href="javascript:;" onclick="share_social('facebook', window.location.href);"><img src="<?= $_STATIC_URL ?>assets/images//icon/icn-fb.svg" class="img-fluid" alt=""></a></li>
+    <li><a href="javascript:;" onclick="share_social('twitter', window.location.href, '<?= $this->event['description'] ?>');"><img src="<?= $_STATIC_URL ?>assets/images//icon/icn-tw.svg" class="img-fluid" alt=""></a></li>
+    <li><a href="javascript:;" onclick="share_social('line', window.location.href, '<?= $this->event['description'] ?>');"><img src="<?= $_STATIC_URL ?>assets/images//icon/icn-line.svg" class="img-fluid" alt=""></a></li>
   </ul>
 </div>
 
 <section class="section-page bg-132F65">
   <div class="container">
-    <div class="logo-bkp animated fadeInUp slower"><img src="assets/images/logo/bp-logo.svg" class="img-fluid"></div>
+    <div class="logo-bkp animated fadeInUp slower"><img src="<?= $_STATIC_URL ?>assets/images/logo/bp-logo.svg" class="img-fluid"></div>
     <div class="row">
       <div class="col-12 col-md-12 col-lg-6">
         <div class="title-top-detail">
-          <div class="img-title animated fadeInUp slower"><img src="assets/images/img-5g.png" class="img-fluid"></div>
-          <div class="title-en animated fadeInUp slower">Thursday, 16 July, 2020,<br>
-            23rd Floor, World Ballroom,<br>
+        <div class="img-title animated fadeInUp slower"><img src="<?= $_STATIC_URL ?>assets/images/ORFI0M0.jpg" class="img-fluid"></div>
+          <div class="title-en animated fadeInUp slower">Wednesday, November 25, 2020<br>
+            World Ballroom, 23rd Floor,<br>
             Centara Grand at CentralWorld<br>
-            13:00 PM. - 17:30 PM.
+            13:00 PM. - 17:25 PM.
           </div>
-          <div class="title-th animated fadeInUp slower">วันพฤหัสบดีที่่ 16 กรกฎาคม พ.ศ.2563<br>
+          <div class="title-th animated fadeInUp slower">วันพุธที่ 25 พฤศจิกายน พ.ศ. 2563<br>
             ณ ห้องเวิลด์บอลรูม ชั้น 23<br>
             โรงแรมเซ็นทารา แกรนด์ แอท เซ็นทรัลเวิลด์<br>
-            เวลา 13:00 น. - 17:30 น.
+            เวลา 13:00 น. - 17:25 น.
           </div>
-          <ul class="logo_sponsor animated fadeInUp slower">
-            <li><a href="javascript:;" target="_blank"><img src="assets/images/logo_sponsor/default.png" class="img-fluid"></a></li>
-            <li><a href="javascript:;" target="_blank"><img src="assets/images/logo_sponsor/default.png" class="img-fluid"></a></li>
-            <li><a href="javascript:;" target="_blank"><img src="assets/images/logo_sponsor/default.png" class="img-fluid"></a></li>
-            <li><a href="javascript:;" target="_blank"><img src="assets/images/logo_sponsor/default.png" class="img-fluid"></a></li>
-            <li><a href="javascript:;" target="_blank"><img src="assets/images/logo_sponsor/default.png" class="img-fluid"></a></li>
+          <ul class="logo_sponsor animated fadeInUp slower" style="display:none;">
+            <li><a href="javascript:;" target="_blank"><img src="<?= $_STATIC_URL ?>assets/images/logo_sponsor/default.png" class="img-fluid"></a></li>
+            <li><a href="javascript:;" target="_blank"><img src="<?= $_STATIC_URL ?>assets/images/logo_sponsor/default.png" class="img-fluid"></a></li>
+            <li><a href="javascript:;" target="_blank"><img src="<?= $_STATIC_URL ?>assets/images/logo_sponsor/default.png" class="img-fluid"></a></li>
+            <li><a href="javascript:;" target="_blank"><img src="<?= $_STATIC_URL ?>assets/images/logo_sponsor/default.png" class="img-fluid"></a></li>
+            <li><a href="javascript:;" target="_blank"><img src="<?= $_STATIC_URL ?>assets/images/logo_sponsor/default.png" class="img-fluid"></a></li>
           </ul>
         </div>
       </div>
       <div class="col-12 col-md-12 col-lg-6">
         <div class="div-embed-video animated fadeInUp slower">
-          <div class="embed-responsive embed-responsive-16by9">
-            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0" allowfullscreen></iframe>
-          </div>
+          <!-- <div class="embed-responsive embed-responsive-16by9">
+             <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0" allowfullscreen></iframe>
+          </div> -->
+          <div><img src="<?= $_STATIC_URL ?>assets/images/1900x1080.jpg" class="img-fluid" alt=""></div>
         </div>
         <div class="div-countdown animated fadeInUp slower">
           <ul>
@@ -85,8 +48,8 @@
           </ul>
         </div>
         <div class="div-btn animated fadeInUp slower">
-          <a href="#register-form" class="btn-forum" data-hover="Register">Register</a>
-          <a href="javascript:;" class="btn-forum" data-hover="Payment Verification">Payment Verification</a>
+          <a href="javascript:;" class="btn-forum" data-hover="Register" onclick="GoToContent('register-form');">Register</a>
+          <a href="javascript:;" class="btn-forum" data-hover="Agenda" onclick="GoToContent('agenda-content');">Agenda</a>
         </div>
       </div>
     </div>
@@ -94,13 +57,13 @@
 </section>
 
 
-<section class="section-page">
+<section class="section-page" style="display:none;">
   <div class="container">
     <div class="text-title"><h2 data-aos="fade-up">Speakers</h2></div>
     <div class="row">
       <div class="col-6 col-md-4 col-lg-3">
         <div class="div-speakers-list" data-aos="fade-up">
-          <div class="div-speakers-img"><img src="assets/images//speakers/default.png" class="img-fluid" alt=""></div>
+          <div class="div-speakers-img"><img src="<?= $_STATIC_URL ?>assets/images//speakers/default.png" class="img-fluid" alt=""></div>
           <div class="div-speakers-name">Ms. Warintorn Lertnimitphun</div>
           <div class="div-speakers-detail">MBA student of Les Roches in 2017 
             Social Media Strategist
@@ -109,7 +72,7 @@
       </div>
       <div class="col-6 col-md-4 col-lg-3">
         <div class="div-speakers-list" data-aos="fade-up">
-          <div class="div-speakers-img"><img src="assets/images//speakers/default.png" class="img-fluid" alt=""></div>
+          <div class="div-speakers-img"><img src="<?= $_STATIC_URL ?>assets/images//speakers/default.png" class="img-fluid" alt=""></div>
           <div class="div-speakers-name">Ms. Warintorn Lertnimitphun</div>
           <div class="div-speakers-detail">MBA student of Les Roches in 2017 
             Social Media Strategist
@@ -118,7 +81,7 @@
       </div>
       <div class="col-6 col-md-4 col-lg-3">
         <div class="div-speakers-list" data-aos="fade-up">
-          <div class="div-speakers-img"><img src="assets/images//speakers/default.png" class="img-fluid" alt=""></div>
+          <div class="div-speakers-img"><img src="<?= $_STATIC_URL ?>assets/images//speakers/default.png" class="img-fluid" alt=""></div>
           <div class="div-speakers-name">Ms. Warintorn Lertnimitphun</div>
           <div class="div-speakers-detail">MBA student of Les Roches in 2017 
             Social Media Strategist
@@ -127,7 +90,7 @@
       </div>
       <div class="col-6 col-md-4 col-lg-3">
         <div class="div-speakers-list" data-aos="fade-up">
-          <div class="div-speakers-img"><img src="assets/images//speakers/default.png" class="img-fluid" alt=""></div>
+          <div class="div-speakers-img"><img src="<?= $_STATIC_URL ?>assets/images//speakers/default.png" class="img-fluid" alt=""></div>
           <div class="div-speakers-name">Ms. Warintorn Lertnimitphun</div>
           <div class="div-speakers-detail">MBA student of Les Roches in 2017 
             Social Media Strategist
@@ -136,7 +99,7 @@
       </div>
       <div class="col-6 col-md-4 col-lg-3">
         <div class="div-speakers-list" data-aos="fade-up">
-          <div class="div-speakers-img"><img src="assets/images//speakers/default.png" class="img-fluid" alt=""></div>
+          <div class="div-speakers-img"><img src="<?= $_STATIC_URL ?>assets/images//speakers/default.png" class="img-fluid" alt=""></div>
           <div class="div-speakers-name">Ms. Warintorn Lertnimitphun</div>
           <div class="div-speakers-detail">MBA student of Les Roches in 2017 
             Social Media Strategist
@@ -145,7 +108,7 @@
       </div>
       <div class="col-6 col-md-4 col-lg-3">
         <div class="div-speakers-list" data-aos="fade-up">
-          <div class="div-speakers-img"><img src="assets/images//speakers/default.png" class="img-fluid" alt=""></div>
+          <div class="div-speakers-img"><img src="<?= $_STATIC_URL ?>assets/images//speakers/default.png" class="img-fluid" alt=""></div>
           <div class="div-speakers-name">Ms. Warintorn Lertnimitphun</div>
           <div class="div-speakers-detail">MBA student of Les Roches in 2017 
             Social Media Strategist
@@ -154,7 +117,7 @@
       </div>
       <div class="col-6 col-md-4 col-lg-3">
         <div class="div-speakers-list" data-aos="fade-up">
-          <div class="div-speakers-img"><img src="assets/images//speakers/default.png" class="img-fluid" alt=""></div>
+          <div class="div-speakers-img"><img src="<?= $_STATIC_URL ?>assets/images//speakers/default.png" class="img-fluid" alt=""></div>
           <div class="div-speakers-name">Ms. Warintorn Lertnimitphun</div>
           <div class="div-speakers-detail">MBA student of Les Roches in 2017 
             Social Media Strategist
@@ -186,6 +149,14 @@
           <span class="form-message"></span>
         </div>
         <div>
+          <input name="position" id="position" class="form-control" type="text" placeholder="Position" data-aos="fade-up">
+          <span class="form-message"></span>
+        </div>
+        <div>
+          <input name="company" id="company" class="form-control" type="text" placeholder="Company" data-aos="fade-up">
+          <span class="form-message"></span>
+        </div>
+        <div>
           <input name="email" id="email" class="form-control" type="text" placeholder="E-mail Address" data-aos="fade-up">
           <span class="form-message"></span>
         </div>
@@ -194,62 +165,113 @@
           <span class="form-message"></span>
         </div>
         <div>
+            <p data-aos="fade-up">
+              <b>
+              Translation device needed? (The forum will be conducted in English.)
+              <span>ท่านต้องการอุปกรณ์แปลภาษาหรือไม่? (งานนี้ดำเนินการสัมมนาเป็นภาษาอังกฤษ)</span>
+              </b>
+            </p>
+            <div class="tab-select" style="margin-bottom:20px;" >
+              <p data-aos="fade-up"><label><input type="radio" name="translation" value="1"> Yes/ต้องการ</label></p>
+              <p data-aos="fade-up"><label><input type="radio" name="translation" value="0" checked> No/ไม่ต้องการ</label></p>
+            </div>
+            <div data-aos="fade-up">
+              <p style="font-weight:normal">Other<span>อื่นๆ</span></p>
+              <div class="tab-select">
+                <p><label><input type="checkbox" name="subscribe_1" value="1" checked > <span style="margin-left: 2px;">I would like to receive exclusive offers and updates from the Bangkok Post Group. ฉันต้องการรับขอเสนอพิเศษและข้อมูลอัพเดตจากกลุ่มบริษัทบางกอกโพสต์</span></label></p>
+                <p><label style="margin-bottom: 40px;"><input type="checkbox" name="subscribe_2" value="1" checked > <span style="margin-left: 2px;"> I would like to receive special promotions from select partners. ฉันต้องการรับโปรโมชั่นพิเศษจากบริษัทคู่ค้าของกลุ่มบริษัทบางกอกโพสต์</span></label></p>
+              </div>
+            </div>
+        </div>
+        <!-- <div>
           <select name="option" id="option" class="form-control custom-select" data-aos="fade-up">
-            <option >Your Lastest High School/University"</option>
+            <option value="">Your Lastest High School/University"</option>
             <option value="2">2</option>
             <option value="3">3</option>
             <option value="4">4</option>
             <option value="5">5</option>
           </select>
           <span class="form-message"></span>
-        </div>
+        </div> -->
         
-        <div class="div-btn" data-aos="fade-up"><button type="submit" class="btn-forum" data-hover="Register Now!">Register Now!</button></div>
+        <div class="div-btn" data-aos="fade-up"><button id="submitBtn" type="submit" class="btn-forum" data-hover="Register Now!">Register Now!</button></div>
       </form>
     </div>
   </div>
 </section>
 
 
-<section class="section-page bg-132F65">
-  <div class="container">
+<section id="agenda-content" class="section-page bg-132F65">
+<div class="container">
     <div class="text-title txt-fff"><h2 data-aos="fade-up">Agenda</h2></div>
 
     <div class="timeline-content">
       <ul class="timeline">
-        <li class="event" data-date="12.30-13.00" data-aos="fade-up">
+        <li class="event" data-date="13.00-13.30" data-aos="fade-up">
           <h3>Registration</h3>
         </li>
-        <li class="event" data-date="13.00-13.10" data-aos="fade-up">
+        <li class="event" data-date="13.30-13.40" data-aos="fade-up">
           <h3>Welcome Speech by</h3>
-          <div class="box-name">Worachai Bhicharnchitr</div>
-          <div class="box-position">Vice Chairman, Bankok Post Public Company Limited</div>
+          <div class="box-name">Bangkok Post Executive</div>
+          <div class="box-position">Bangkok Post Public Company Limited</div>
         </li>
-        <li class="event" id="date" data-date="13.10-14.00" data-aos="fade-up">
-          <h3>Keynote Speech by</h3>
-          <div class="box-name">H.E. Buddhipongse Punnakanta,</div>
-          <div class="box-position">Minister of Digital Economy and Society</div>
+        <li class="event" id="date" data-date="13.40-14.40" data-aos="fade-up">
+          <h3>Keynote speaker:</h3>
+          <div class="box-name">H.E. Arkom Termpittayapaisith</div>
+          <div class="box-position">Finance Minister</div>
         </li>
-        <li class="event" data-date="14.00-14.30" data-aos="fade-up">
-          <h3>Speech : Reshaping Thailand’s digital revolution</h3>
-          <div class="box-name">Vichaow Rakphongphairoj</div>
-          <div class="box-position">Vice Chairman of the Executive Committee of True Corporation Plc.</div>
-          <div class="box-name">Pratthana Leelapanang</div>
-          <div class="box-position">Chief Consumer Business Officer of Advanced info Services Plc.</div>
+        <li class="event" data-date="14.40-15.10" data-aos="fade-up">
+          <h3>Keynote speaker:</h3>
+          <div class="box-name">Sen. Ladda Tammy Duckworth</div>
+          <div class="box-position">U.S. Senator</div>
         </li>
-        <li class="event" data-date="14.30-15.00" data-aos="fade-up">
+        <li class="event" data-date="15.10-15.25" data-aos="fade-up">
           <h3>Coffee Break</h3>
         </li>
-        <li class="event" data-date="14.00-14.30" data-aos="fade-up">
-          <h3>Speech : Reshaping Thailand’s digital revolution</h3>
-          <div class="box-name">Vichaow Rakphongphairoj</div>
-          <div class="box-position">Vice Chairman of the Executive Committee of True Corporation Plc.</div>
-          <div class="box-name">Pratthana Leelapanang</div>
-          <div class="box-position">Chief Consumer Business Officer of Advanced info Services Plc.</div>
+        <li class="event" data-date="15.25-16.25" data-aos="fade-up">
+          <h3>Panel discussion:</h3>
+          <div class="box-name">Aloke Lohia</div>
+          <div class="box-position">Group CEO, Indorama Ventures</div>
+          <div class="box-name">Dr Boon Wanasin</div>
+          <div class="box-position">Chairman, Thonburi Healthcare Group</div>
+          <div class="box-name">Harald Link</div>
+          <div class="box-position">Chairman, B. Grimm Power Plc.</div>
+          <div class="box-name">Suphajee Suthumpun</div>
+          <div class="box-position">Group Chief Executive Officer, Dusit Thani Pcl.</div>
+        </li>
+        <li class="event" data-date="16.25-17.25" data-aos="fade-up">
+          <h3>Panel discussion:</h3>
+          <div class="box-name">Jack Zhang</div>
+          <div class="box-position">Chief Executive Officer, LAZADA Thailand</div>
+          <div class="box-name">Dr Joshua Pas</div>
+          <div class="box-position">Managing Director and Investment Committee, AddVentures Capital by SCG</div>
+          <div class="box-name">Pinya Nittayakasetwat</div>
+          <div class="box-position">Country General Manager, Gojek Thailand</div>
+          <div class="box-name">Ruangroj Poonpol</div>
+          <div class="box-position">Chairman, KASIKORN Business Technology Group (KBTG)</div>
         </li>
       </ul>
     </div>
 
+  </div>
+</section>
+
+<section class="section-page">
+  <div class="container">
+    <div class="text-title"><h2 data-aos="fade-up">Hurry up and reserve now!</h2></div>
+    <div class="row">
+      <div class="col-12">
+        <div class="div-countdown countdown--bottom animated fadeInUp slower">
+          <ul>
+            <li><span id="days2"></span>DAY(S)</li>
+            <li><span id="hours2"></span>HOUR</li>
+            <li><span id="minutes2"></span>MINUTE</li>
+            <li><span id="seconds2"></span>SECOND</li>
+          </ul>
+        </div>
+        <div class="div-btn" data-aos="fade-up"><button class="btn-forum" data-hover="Register Now!">Register Now!</button></div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -259,92 +281,15 @@
     <div class="row">
       <div class="col-12 col-md-9" data-aos="fade-up">
         <div class="div-footer">
-          <h4>For more information contact</h4>
-          <p>Tel. <?= $this->event['contact_phone'] ?></p>
-          <p><a href="<?= $_URL ?>"><?= str_replace(strpos($_URL,'https') !== false ? 'https://': 'http://','',$_URL) ?></a></p>
-          <p>The seminar will be conducted in Thai with simultaneous translation in English</p>
+          <h4>For inquiries, please contact:</h4>
+          <p><a href="mailto:<?= $this->event['contact_email'] ?>" target="_blank"><?= $this->event['contact_email'] ?></a></p>
         </div>
       </div>
-      <div class="col-12 col-md-3">
+      <!-- <div class="col-12 col-md-3">
         <div class="div-footer--header" data-aos="fade-up">SCAN QR CODE HERE</div>
-        <div class="div-footer--qrcode" data-aos="fade-up">
-          <!-- <img src="assets/images/img-qrcode.jpg" class="img-fluid" alt=""> -->
-          <img src='https://chart.googleapis.com/chart?cht=qr&chl=<?= $_URL.(!empty($_SERVER['QUERY_STRING']) ? '?'.$_SERVER['QUERY_STRING'] : '') ?>&chs=245x245&chld=L|0' class="img-fluid" alt="">
-        </div>
-      </div>
+        <div class="div-footer--qrcode" data-aos="fade-up"><img src="assets/images/img-qrcode.jpg" class="img-fluid" alt=""></div>
+      </div> -->
     </div>
   </div>
 </section>
 
-<script>
-  $.validator.addMethod('customphone', function (value, element) {
-			return this.optional(element) || /^\d{9,10}$/.test(value);
-		}, "Please enter a valid phone number");
-		$.validator.addClassRules('customphone', {
-			customphone: true
-		});
-
-  $(document).ready(function() {
-    $('input').keyup(function()
-    {
-      if($(this).val())
-      {
-        $(this).css("border-color", "");
-        $(this).css("background-color", "#e8f0fe");
-        $(this).css("color", "black");
-        if(!$(this).next().find( 'label[class*="error"]' ))
-        {
-          $(this).parent().css('padding-bottom','25px');
-        }else{
-          $(this).parent().css('padding-bottom','0px');
-        }
-      }else{
-        $(this).parent().css('padding-bottom','25px');
-      }
-      
-    })
-
-    $("#registerForm").validate({
-          errorPlacement: function(error, element) {
-              error.appendTo(element.next());
-              element[0].parentNode.style.padding = "0 0 25px"; //parent div tag
-              element[0].style.borderColor  = 'red'; //input tag
-              element[0].style.backgroundColor  = '';//input tag
-              element.next()[0].style.color = 'red';  //error message
-              element.next()[0].style.fontWeight = 'bold'; //error message
-          },
-          rules: {
-              name: "required",
-              lastname: "required",
-              company: "required", 
-              position: "required",					
-              email: {
-                required: true,
-                email: true,
-              },
-              
-              phone: {
-                required: true,
-                customphone: true,
-              },
-          },
-          messages: {
-              name: "*Information required/โปรดกรอกข้อมูลให้ครบถ้วน",
-              lastname: "*Information required/โปรดกรอกข้อมูลให้ครบถ้วน",
-              company: "*Information required/โปรดกรอกข้อมูลให้ครบถ้วน",
-              position: "*Information required/โปรดกรอกข้อมูลให้ครบถ้วน",
-              email: {
-                required: "*Information required/โปรดกรอกข้อมูลให้555ครบถ้วน",
-                email:"*Invalid data/ข้อมูลไม่ถูกต้อง",
-              },
-              phone: { 
-                required:"*Information required/โปรดกรอกข้อมูลให้ครบถ้วน",
-                customphone:"*Invalid data/ข้อมูลไม่ถูกต้อง",
-              }					
-          }
-    });
-});
-</script>
-	
-</body>
-</html>

@@ -21,20 +21,32 @@ class Index_c extends CI_Controller
 
 	}
 
+	private function getPageConfig()
+	{
+		$data['check_quota'] = RegisterHelper::get_quota();
+		if ($data['check_quota']) {
+			echo '<!--' . $data['check_quota'] . '-->';
+		}
+		
+		$data['_URL'] = base_url();
+		$data['_STATIC_URL'] = $this->event['base_static'];
+		$data['_CURRENT_URL'] =  $this->config->item( 'host' ).$_SERVER['REQUEST_URI'];
+		$data['ASSETS_VERSION'] = $this->config->item( 'asset_version' );
+
+		return $data;
+	}
+
 	public function index()
 	{
 		if($this->event['is_closed'])
 		{
 			//// Some Action
 		}	
-
-		$data['check_quota'] = RegisterHelper::get_quota();
-		if ($data['check_quota']) {
-			echo '<!--' . $data['check_quota'] . '-->';
-		}
-	
+		$data = $this->getPageConfig();
+		$data['_isHome'] = TRUE;
+		$this->load->view('template/header',$data); 
 		$this->load->view('index', $data); 
-		
+		$this->load->view('template/footer',$data); 
 	}
 
 	public function register()
@@ -58,17 +70,8 @@ class Index_c extends CI_Controller
 			if($this->input->post('register_person'))
 			{
 				$index = 0;
-				for ($i = 1; $i <= $this->input->post('register_person'); $i++) {
-
-					
-					$is_banned = FALSE;//RegisterHelper::_is_banlist($person[$index]);	// Check banlist
-					$is_duplicate_reg = RegisterHelper::_check_duplicate_reg($person[$index]['email'],$person[$index]['phone']);	// Check duplicate_registration
-
-					if ($is_banned || $is_duplicate_reg) 
-					{
-						break;	//ถ้าผิดเงื่อนไข ให้เบรคลูปสำหรับบันทึกข้อมูลง DB
-					}
-
+				for ($i = 1; $i <= $this->input->post('register_person'); $i++) 
+				{
 					$person[$index]['pre_name'] = $this->input->post('pre_name');
 					if ($this->input->post('pre_name') == 'etc') {
 						$person[$index]['pre_name'] = $this->input->post('pre_name_text');
@@ -78,18 +81,31 @@ class Index_c extends CI_Controller
 					$person[$index]['email'] = $this->input->post('email');
 					$person[$index]['phone'] = $this->input->post('phone');
 					$person[$index]['code'] = $register_code;
-					// $person[$index]['company'] = $this->input->post('company' . $i);
-					// $person[$index]['position'] = $this->input->post('position' . $i);
-					// $person[$index]['business_type'] = $this->input->post('business_type' . $i);
-					// $person[$index]['company_website'] = $this->input->post('company_website' . $i);
-					// $person[$i]['image'] = $this->input->post('image'.$i);
+					$person[$index]['company'] = $this->input->post('company');
+					$person[$index]['position'] = $this->input->post('position');
+					// $person[$index]['business_type'] = $this->input->post('business_type');
+					// $person[$index]['company_website'] = $this->input->post('company_website');
+					// $person[$i]['image'] = $this->input->post('image');
+					// echo "<Pre/>"; print_r($person); exit;
+					$is_banned = RegisterHelper::_is_banlist($person[$index]);	// Check banlist
+					$is_duplicate_reg = RegisterHelper::_check_duplicate_reg($person[$index]['email'],$person[$index]['phone']);	// Check duplicate_registration
+
+					if ($is_banned || $is_duplicate_reg) 
+					{
+						break;	//ถ้าผิดเงื่อนไข ให้เบรคลูปสำหรับบันทึกข้อมูลง DB
+					}
 
 					$index++;
 				}
 
 				//Uncomplete registration
-				if ($is_duplicate_reg) {  
+				if ($is_banned) {  
 					redirect(base_url() .'uncompleted');
+					exit;
+				}
+				//Uncomplete registration
+				if ($is_duplicate_reg) {  
+					redirect(base_url() .'uncomplete');
 					exit;
 				}
 
@@ -100,13 +116,13 @@ class Index_c extends CI_Controller
 						$person = json_encode($person);
 					}
 					//Extra Field
-					// $extra['attend_1'] = $this->input->post('attend_1');
-					// $extra['attend_2'] = $this->input->post('attend_2');
-					// $extra['translation'] = $this->input->post('translation');
-					// $extra['subscribe_1'] = $this->input->post('subscribe_1');
-					// $extra['subscribe_2'] = $this->input->post('subscribe_2');
+					$extra['attend_1'] = $this->input->post('attend_1');
+					$extra['attend_2'] = $this->input->post('attend_2');
+					$extra['translation'] = $this->input->post('translation');
+					$extra['subscribe_1'] = $this->input->post('subscribe_1');
+					$extra['subscribe_2'] = $this->input->post('subscribe_2');
 					
-					// $extra = json_encode($extra);
+					$extra = json_encode($extra);
 	
 					if ($person) {
 	
@@ -116,7 +132,7 @@ class Index_c extends CI_Controller
 							'register_date' => date("Y-m-d H:i:s"),
 							'email' => $this->input->post('email'),
 							'payment_status' => 0,
-							// 'extra' => $extra,
+							'extra' => $extra,
 							'event_id' => $this->event['event_id'],
 							'utm' => $this->session->userdata('test_utm'),
 							// 'business_type' => $this->input->post('business_type'),
@@ -134,9 +150,9 @@ class Index_c extends CI_Controller
 	
 						$data['data'] = $data_mail;
 						
-						// $subject = $this->event['title'];
-						// $body = $this->load->view('mail/bkp_74th_anniversary', $data, TRUE);
-						// $return = send_email($this->input->post('email1'), $subject, $body);
+						$subject = $this->event['title'];
+						$body = $this->load->view('mail/mail_template', $data, TRUE);
+						$return = SendMailHelper::send_email($this->input->post('email'), $subject, $body);
 						
 						$this->output->enable_profiler(TRUE);
 						//delete session
@@ -151,19 +167,26 @@ class Index_c extends CI_Controller
 
 	public function thankyou()
 	{
-		if($this->event['is_closed'])
-		{
-			//// Some Action
-		}	
+		$data = $this->getPageConfig();
+		$data['_isHome'] = FALSE;
+		$this->load->view('template/header',$data); 
+		$this->load->view('thankyou'); 
+	}
 
-		$data['check_quota'] = RegisterHelper::get_quota();
-		if ($data['check_quota']) {
-			echo '<!--' . $data['check_quota'] . '-->';
-		}
+	public function unsuccess1()
+	{
+		$data = $this->getPageConfig();
+		$data['_isHome'] = FALSE;
+		$this->load->view('template/header',$data); 
+		$this->load->view('uncomplete',$data);
+	}
 
-		$data['response'] = "Thank you for your registration!";
-	
-		$this->load->view('index', $data); 
+	public function unsuccess2()
+	{
+		$data = $this->getPageConfig();
+		$data['_isHome'] = FALSE;
+		$this->load->view('template/header',$data); 
+		$this->load->view('uncompleted',$data);
 	}
 
 }

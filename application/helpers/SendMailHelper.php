@@ -20,9 +20,9 @@ Class SendMailHelper
 	 * @param $path
 	 * 
 	 */
-	function send_email($mailto='',$subject='',$body='',$path=''){
+	public static function send_email($mailto='',$subject='',$body='',$path=''){
 		$CI = &get_instance();
-		$CI->load->library('phpmailer');
+		$CI->load->library('Phpmailer');
 		$CI->load->library('smtp');
 		$CI->phpmailer->CharSet = "UTF-8";
 		

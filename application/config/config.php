@@ -1,5 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+date_default_timezone_set("Asia/Bangkok");
 
 /*
 |--------------------------------------------------------------------------
@@ -30,7 +31,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 /
  / Auto Define Base URL
  */
-$config['web_base'] = strpos($_SERVER["HTTP_HOST"],'bangkokpost.com') !== FALSE ? 'bangkokpost' : strpos($_SERVER["HTTP_HOST"],'posttoday.com') !== FALSE ? 'posttoday' : 'localhost'; // WEB NAME => bangkokpost , posttoday or localhost
+if(strpos($_SERVER["HTTP_HOST"],'bangkokpost.com') !== FALSE)
+{
+    $config['web_base'] = 'bangkokpost';
+}else if(strpos($_SERVER["HTTP_HOST"],'posttoday.com') !== FALSE)
+{
+    $config['web_base'] = 'posttoday';
+}else{
+    $config['web_base'] = 'localhost';
+}
+
 $config['host'] = strpos($config['web_base'],'localhost') !== FALSE ? 'http://'.$config['web_base'] : 'https://www.'.$config['web_base'].'.com' ;	// Server => Production or Localhost
 preg_match('/events(.*)/',FCPATH, $config['project_path']);  // Project Folder Name => '/{folder_name}/' (Ex. /bangkokpostinterforum2020/)
 // BASE URL 
@@ -41,12 +51,12 @@ $config['base_url'] = $config['host'].'/events'.str_replace('\\','/',$config['pr
 /
 / >>>>>>>>>>>>>>>>>>>>>>>>>>>> FRONTEND <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< */
 // Assets Version
-$config['asset_version'] = '?v=0.0.1';
+$config['asset_version'] = '?v=0.0.11';
 //Meta Tag & Header 
-$config['event']['title'] = 'Event Title';
-$config['event']['description'] = 'Event Description';
-$config['event']['keyword'] = 'Event Keyword';
-$config['event']['truehits'] = 'Event Truehits';
+$config['event']['title'] = 'Bangkok Post International Forum 2020';
+$config['event']['description'] = 'Beyond the Pandemic: A Decade of Challenges from 2021';
+$config['event']['keywords'] = 'Bangkok Post, bangkokpost, event, inter, forum, 2020, beyond, pandemic, decade, challenges, 2021';
+$config['event']['truehits'] = $config['event']['title'];
 $config['event']['facebook_title'] = $config['event']['title'];
 $config['event']['facebook_description'] = $config['event']['description'];
 
@@ -62,7 +72,7 @@ $config['event']['mail_event_label'] = $config['event']['title'].' : '.$config['
 
 // CONTACT
 $config['event']['contact_phone'] = '222-222-2222';
-$config['event']['contact_email'] = 'watcharaphonp@bangkokpost.co.th';
+$config['event']['contact_email'] = 'rsvp@bangkokpost.co.th';
 
 /*
 / >>>>>>>>>>>>>>>>>>>>>>>>>>>> BACKEND <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< */
@@ -441,7 +451,7 @@ $config['encryption_key'] = '';
 $config['sess_driver'] = 'files';
 $config['sess_cookie_name'] = 'ci_session';
 $config['sess_expiration'] = 7200;
-$config['sess_save_path'] = NULL;
+$config['sess_save_path'] = BASEPATH.'ci_sessions';
 $config['sess_match_ip'] = FALSE;
 $config['sess_time_to_update'] = 7200;
 $config['sess_regenerate_destroy'] = FALSE;
@@ -595,7 +605,7 @@ spl_autoload_extensions('.php'); // Only Autoload PHP Files
 spl_autoload_register(function($classname) {
     if (strpos($classname,'\\') !== false) {
         // Namespaced Classes
-        $classfile = strtolower(str_replace('/', '\\', $classname));
+        $classfile = /*strtolower(*/str_replace('\\', '/', $classname)/*)*/;
 
         if ($classname[0] !== '/') {
             $classfile = APPPATH. $classfile . '.php';

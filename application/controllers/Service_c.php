@@ -11,6 +11,8 @@ class Service_c extends CI_Controller {
 		header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
 		header("Cache-Control: post-check=0, pre-check=0", false);
 		header("Pragma: no-cache");
+
+		$this->load->helper('url'); 
 		
 		$this->event = $this->config->item('event');
 	}
@@ -185,5 +187,16 @@ class Service_c extends CI_Controller {
 		// print_r($data);
 
 		$this->load->view('yes_no_confirmation', $data); 
+	}
+
+	public function check_mail_template()
+	{
+		$data_mail['name'] = '{Name}';
+		$data_mail['code'] = '1234';
+	
+		$data['data'] = $data_mail;
+						
+		$subject = $this->event['title'];
+		echo $this->load->view('mail/mail_template', $data, TRUE);
 	}
 }

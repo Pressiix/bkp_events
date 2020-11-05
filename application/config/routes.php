@@ -53,7 +53,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 // $route['404_override'] = '';
 // $route['translate_uri_dashes'] = FALSE;
 $route['register'] = 'index_c/register';
-$route['thankyou'] = 'index_c/thankyou';
+$route['thankyou'] = 'index_c/thankyou';	//Thank You Action
+$route['uncomplete'] = 'index_c/unsuccess1';//Duplicate Registration
+$route['uncompleted'] = 'index_c/unsuccess2';//Banned User Registration
+$route['check_mail_template'] = 'service_c/check_mail_template';
 
 $route['default_controller'] = 'index_c/index';
 $route['404_override'] = '';

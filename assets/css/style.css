@@ -246,6 +246,7 @@ ul.logo_sponsor li a{ display: block; }
 .div-btn{ text-align: center; }
 
 
+.countdown--bottom.div-countdown ul li span{ background-color: #132F65; color: #fff; }
 
 
 @media (max-width: 1440px){
@@ -440,7 +441,7 @@ ul.logo_sponsor li a{ display: block; }
 
 .section-footer{ padding: 25px 0; color: #132F65; overflow: hidden; }
 
-.div-footer{ position: absolute; top: 50%; transform: translateY(-50%); }
+/* .div-footer{ position: absolute; top: 50%; transform: translateY(-50%); } */
 .div-footer p{ font-weight: 400; }
 .div-footer a{ color: #132F65; text-decoration: underline; }
 .div-footer a:hover{ color: #000; text-decoration: none; }
@@ -483,6 +484,65 @@ ul.logo_sponsor li a{ display: block; }
 /*******************************************************************/
 /*******************************************************************/
 
+.thank-bartop{ background-color: #132F65; padding: 20px;}
+.thank-bartop .logo-bkp{ max-width: 200px; margin: 0 auto; padding-bottom: 0;}
+
+.text-thank-detail{ max-width: 720px; width: 90%; margin: 0 auto; padding-bottom: 30px;}
+.text-thank-detail .txt-en{ font-size: 26px; line-height: 36px; padding-top: 20px; }
+.text-thank-detail .txt-th{ font-size: 20px; line-height: 30px; padding-top: 20px; }
+.text-thank-detail .txt-en,
+.text-thank-detail .txt-th{ text-align: center; }
 
 
 
+@media (max-width: 767px){
+
+  .thank-bartop{ padding: 10px;}
+  .thank-bartop .logo-bkp{ max-width: 150px; }
+
+  .text-thank-detail .txt-en{ font-size: 22px; line-height: 32px; }
+  .text-thank-detail .txt-th{ font-size: 18px; line-height: 28px; }
+}
+
+
+
+
+
+
+
+footer {background: #132F65;width: 100%;overflow: hidden;left: 0;top: 0;margin: 0;}
+footer .sectionProfile {
+    width: 100%;
+    background: #132F65;
+    overflow: hidden;
+    padding: 10px 0;
+}
+footer .sectionProfile .company-detail {
+  margin: 0 auto;
+  overflow: hidden;
+}
+footer .sectionProfile .logo-post {
+    width: 145px;
+    float: left;
+    margin-right: 30px;
+}
+footer .sectionProfile .logo-post a {
+    width: 100%;
+}
+footer .sectionProfile .company-detail > span {
+    font-size: 14px;
+    color: #999999;
+    min-width: 75px;
+    display: block;
+    margin-right: 30px;
+  font-family: 'Arial ,Thonburi, Tahoma';
+  float: left;
+
+}
+
+
+@media (max-width: 575px) {
+  footer .sectionProfile .company-detail { width: 100%; padding-top: 10px;}
+  footer .sectionProfile .company-detail a { display: inline-block; margin-right: 2%; padding: 0 0 10px;}
+  footer .sectionProfile .company-detail > span.truehits { display: block; margin: 10px auto 0; text-align: center}
+}
