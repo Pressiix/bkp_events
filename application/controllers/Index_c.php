@@ -24,10 +24,6 @@ class Index_c extends CI_Controller
 	private function getPageConfig()
 	{
 		$data['check_quota'] = RegisterHelper::get_quota();
-		if ($data['check_quota']) {
-			echo '<!--' . $data['check_quota'] . '-->';
-		}
-
 		//ดึงค่าวันที่และเวลาที่ตั้งไว้สำหรับปิดระบบ และปิดระบบอัตโนมัติ
 		$date = $this->event['close_date'];
 		$close_date = strtotime($date);
@@ -49,6 +45,10 @@ class Index_c extends CI_Controller
 	public function index()
 	{
 		$data = $this->getPageConfig();
+		
+		if ($data['check_quota']) {
+			echo '<!--' . $data['check_quota'] . '-->';
+		}
 		$data['_isHome'] = TRUE;
 		$this->load->view('template/header',$data); 
 		$this->load->view('index', $data); 
