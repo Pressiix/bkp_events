@@ -51,7 +51,7 @@ $config['base_url'] = $config['host'].'/events'.str_replace('\\','/',$config['pr
 /
 / >>>>>>>>>>>>>>>>>>>>>>>>>>>> FRONTEND <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< */
 // Assets Version
-$config['asset_version'] = '?v=0.0.20';
+$config['asset_version'] = '?v=0.0.30';
 //Meta Tag & Header 
 $config['event']['title'] = 'Bangkok Post International Forum 2020';
 $config['event']['description'] = 'Beyond the Pandemic: A Decade of Challenges from 2021';
@@ -62,13 +62,14 @@ $config['event']['facebook_description'] = $config['event']['description'];
 
 // ARTWORK IMAGE
 $config['event']['base_static'] = str_replace('www.', 'static.', $config['base_url']);
-$config['event']['image_fb_share'] = $config['event']['base_static'] . 'assets/images/aw/03-share-FB.jpg' . $config['asset_version'];
-$config['event']['image_tw_share'] = $config['event']['base_static'] . 'assets/images/aw/03-share-FB.jpg' . $config['asset_version'];
+$config['event']['image_fb_share'] = $config['event']['base_static'] . 'assets/images/aw/03-Share-FB.png' . $config['asset_version'];
+$config['event']['image_tw_share'] = $config['event']['base_static'] . 'assets/images/aw/03-Share-FB.png' . $config['asset_version'];
 $config['event']['url_image_banner1'] = $config['event']['base_static'] . 'assets/images/aw/banner-01.png'. $config['asset_version'];
-$config['event']['url_image_banner2'] = $config['event']['base_static'] . 'assets/images/aw/banner-02.png'. $config['asset_version'];
+$config['event']['url_image_banner2'] = $config['event']['base_static'] . 'assets/images/aw/banner-02.jpg'. $config['asset_version'];
 
 //	EMAIL DETAIL
 $config['event']['mail_event_label'] = $config['event']['title'].' : '.$config['event']['description'];
+
 
 // CONTACT
 $config['event']['contact_phone'] = '222-222-2222';
@@ -78,11 +79,12 @@ $config['event']['contact_email'] = 'rsvp@bangkokpost.co.th';
 / >>>>>>>>>>>>>>>>>>>>>>>>>>>> BACKEND <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< */
 //	Config
 $config['event']['event_id'] = 47; 
-$config['event']['quota'] = 150;
+$config['event']['event_type'] = 'event'; 
+$config['event']['quota'] = 1500;
 // $config['event']['event_type'] = 1; //1 = normal , 2=json
 
 // Close event 
-$config['event']['close_date'] = 'Nov 25, 2020 13:00:00';
+$config['event']['close_date'] = 'Nov 24, 2020 15:35:00';
 
 // ซ่อน AW
 $config['event']['aw_hidden'] = true;
@@ -455,6 +457,7 @@ $config['sess_save_path'] = BASEPATH.'ci_sessions';
 $config['sess_match_ip'] = FALSE;
 $config['sess_time_to_update'] = 7200;
 $config['sess_regenerate_destroy'] = FALSE;
+
 
 /*
 |--------------------------------------------------------------------------

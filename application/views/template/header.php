@@ -8,9 +8,9 @@
   <meta name="keywords" content="<?= $this->event['keywords'] ?>">
 	
   <!-- FACEBOOK -->
-  <meta property="og:title" content="<?= $this->event['title'] ?>" />
+    <meta property="og:title" content="<?= $this->event['title'] ?>" />
     <meta property="og:type" content="article" />
-    <meta property="og:url" content="www.bangkokpost.com/sp/thai_swedish/" />
+    <meta property="og:url" content="<?= base_url() ?>" />
     <meta property="og:image" content="<?= $this->event['image_fb_share'] ?>" />
     <meta property="og:image:type" content="image/jpeg" />
     <meta property="og:image:width" content="1200" />
@@ -58,6 +58,7 @@
 	
   <?php if(isset($_isHome) && $_isHome){ ?>
   <script>
+    console.log('AAA')
     window.history.pushState('<?= $_CURRENT_URL ?>', 'Title', '<?= $_URL ?>');
   </script>
   <script type="text/javascript">
@@ -91,7 +92,6 @@
                 case 'linkedin':
                     popitup('https://www.linkedin.com/sharing/share-offsite/?url=' + _url_decode );
                     break;
-                    
             }
         }
     </script>

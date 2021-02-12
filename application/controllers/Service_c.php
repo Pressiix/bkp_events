@@ -197,6 +197,12 @@ class Service_c extends CI_Controller {
 		$data['data'] = $data_mail;
 						
 		$subject = $this->event['title'];
-		echo $this->load->view('mail/mail_template', $data, TRUE);
+		if(isset($_GET['enews_test']))
+		{
+			echo $this->load->view('mail/mail_template3', $data, TRUE);
+		}else{
+			echo $this->load->view('mail/mail_template', $data, TRUE);
+		}
+		
 	}
 }

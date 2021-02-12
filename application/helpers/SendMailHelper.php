@@ -13,6 +13,7 @@ namespace helpers;
 Class SendMailHelper
 {
 	/**
+	 * Email Sending Function
 	 * 
 	 * @param $mailto
 	 * @param $subject

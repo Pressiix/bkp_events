@@ -39,7 +39,7 @@ Class RegisterHelper
 	 *  - true: โดนแบน
 	 *  - false: ไม่โดนแบน
 	 */
-	public static function _is_banlist($person)
+	public static function isBanList($person)
 	{
 		$CI = &get_instance();
 		$config = $CI->config->item('event');
@@ -90,7 +90,7 @@ Class RegisterHelper
 	 *  - true: ซ้ำ
 	 *  - false: ไม่ซ้ำ
 	 */
-	public static function _check_duplicate_reg($email,$phone)
+	public static function checkDuplicateReg($email,$phone)
 	{ 
 		$CI = &get_instance();
 		$config = $CI->config->item('event');
@@ -101,6 +101,7 @@ Class RegisterHelper
 
 		$CI->db->select('name');  //name field = json
 		$CI->db->where("event_id = {$CI->db->escape($config['event_id'])}");
+		$CI->db->where("event_type = {$CI->db->escape($config['event_type'])}");
 		$result = $CI->db->get('register')->result();
 		$result = json_decode(json_encode($result), True);
 		foreach($result as $val)
@@ -120,6 +121,20 @@ Class RegisterHelper
 			if($ret === true) 
 			{
 				break;
+			}
+		}
+
+		if($config['event_type'] == 'virtual_event' && !$ret)
+		{
+			$CI->db->select('*');  //name field = json
+			$CI->db->where("event_id = {$CI->db->escape($config['event_id'])}");
+			$CI->db->where("email = {$CI->db->escape($email)}");
+			$CI->db->or_where("phone = {$CI->db->escape($phone)}");
+			$count = $CI->db->get('live_user')->result_id->num_rows;
+
+			if($count > 0)
+			{
+				$ret = true;
 			}
 		}
 		return $ret;

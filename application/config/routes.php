@@ -58,6 +58,15 @@ $route['uncomplete'] = 'index_c/unsuccess1';//Duplicate Registration
 $route['uncompleted'] = 'index_c/unsuccess2';//Banned User Registration
 $route['check_mail_template'] = 'service_c/check_mail_template';
 
+$route['confirm_event'] = 'index_c/confirm_event';
+
+/** LIVE **/
+$route['live'] = 'live_c/live';
+$route['live_register'] = 'live_c/live_register';
+$route['live_login'] = 'live_c/live_login';
+$route['live-updates'] = 'live_c/live_update';
+$route['service/checkmail'] = 'live_c/check_duplicate_reg1';
+
 $route['default_controller'] = 'index_c/index';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
